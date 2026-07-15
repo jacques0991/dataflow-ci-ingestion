@@ -140,10 +140,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const password = document.getElementById('login-password').value;
       
       // Auth fictive simple requise par le MVP
-      if (email === 'admin@dataflow.ci' && password === 'admin123') {
+      if (email === 'savin@dataflow.ci' && password === 'admin123') {
         db.setSession({
           email,
-          name: 'Kouassi Kouamé',
+          name: 'Loukou Savin',
           role: 'Ingénieur Données',
           loggedIn: true
         });
