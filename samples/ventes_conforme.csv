@@ -1,0 +1,6 @@
+date,region,montant_fcfa,client_id
+2026-07-14,Abidjan,15000,CLI-123456
+2026-07-14,Bouaké,25000,CLI-789012
+2026-07-15,Daloa,7500,CLI-345678
+2026-07-15,Yamoussoukro,50000,CLI-901234
+2026-07-15,Korhogo,12500,CLI-567890

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataFlow CI — Portail d'Ingestion & Validation</title>
+  
+  <!-- Polices Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet principale -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Écran de Connexion (Auth) -->
+  <div id="auth-screen" class="auth-container hidden">
+    <div class="auth-card">
+      <div class="auth-header">
+        <div class="brand-logo">
+          <i data-lucide="database"></i>
+        </div>
+        <h1>DataFlow CI</h1>
+        <p>Portail d'Ingestion & Validation</p>
+      </div>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="login-email">Adresse Email</label>
+          <div class="input-with-icon">
+            <i data-lucide="mail"></i>
+            <input type="email" id="login-email" required placeholder="nom@entreprise.ci">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="login-password">Mot de passe</label>
+          <div class="input-with-icon">
+            <i data-lucide="lock"></i>
+            <input type="password" id="login-password" required placeholder="••••••••">
+          </div>
+        </div>
+        <div id="auth-error" class="error-message hidden">
+          Identifiants incorrects. Veuillez réessayer.
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">
+          Se connecter
+        </button>
+      </form>
+      <div class="auth-footer">
+        <p>Accès restreint. Artefact CI &copy; 2026</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Conteneur principal de l'application -->
+  <div id="app-container" class="app-layout hidden">
+    <!-- Barre latérale de navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="brand">
+          <i data-lucide="database" class="brand-icon"></i>
+          <span>DataFlow CI</span>
+        </div>
+      </div>
+      
+      <nav class="sidebar-menu">
+        <a href="#dashboard" class="menu-item active" id="nav-dashboard">
+          <i data-lucide="layout-dashboard"></i>
+          <span>Tableau de bord</span>
+        </a>
+        <a href="#sources" class="menu-item" id="nav-sources">
+          <i data-lucide="settings-input-component"></i>
+          <span>Sources de données</span>
+        </a>
+        <a href="#upload" class="menu-item" id="nav-upload">
+          <i data-lucide="upload-cloud"></i>
+          <span>Importer un fichier</span>
+        </a>
+        <a href="#reports" class="menu-item" id="nav-reports">
+          <i data-lucide="clipboard-list"></i>
+          <span>Rapports d'ingestion</span>
+        </a>
+      </nav>
+      
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="user-avatar" id="user-avatar-initials">AD</div>
+          <div class="user-info">
+            <span class="user-name" id="user-display-name">Admin DataFlow</span>
+            <span class="user-role">Ingénieur Données</span>
+          </div>
+        </div>
+        <button id="logout-btn" class="btn-logout" title="Se déconnecter">
+          <i data-lucide="log-out"></i>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Zone de contenu principal -->
+    <main class="main-content">
+      <header class="top-bar">
+        <h2 id="page-title">Tableau de bord</h2>
+        <div class="top-bar-actions">
+          <div class="queue-status-badge idle" id="global-queue-badge">
+            <span class="pulse-indicator"></span>
+            <span id="queue-badge-text">File d'attente inactive</span>
+          </div>
+        </div>
+      </header>
+      
+      <div id="view-content" class="view-content-container">
+        <!-- Le contenu des vues sera injecté dynamiquement ici -->
+      </div>
+    </main>
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Importation des librairies tierces via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+  <!-- Script Modules applicatifs -->
+  <script type="module" src="js/db.js"></script>
+  <script type="module" src="js/mockData.js"></script>
+  <script type="module" src="js/validator.js"></script>
+  <script type="module" src="js/queue.js"></script>
+  <script type="module" src="js/ui.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
